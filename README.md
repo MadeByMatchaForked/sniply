@@ -2,17 +2,16 @@
 
 ## Description
 
-Tools for [Snip.ly](http://www.snip.ly)'s API, 
-- OAuth2 feature with <https://github.com/thephpleague/oauth2-client>
-- API Wrapper with <https://github.com/guzzle/guzzle/>
+Tools for [Snip.ly](http://www.snip.ly)'s API
+
+- OAuth2 feature with <https://github.com/thephpleague/oauth2-client>  
+- API Wrapper with <https://github.com/guzzle/guzzle/>  
 
 ## Install
 
-Requires PHP 5.4.
-
 Via Composer
 
-``` json
+```json
 {
     "require": {
         "league/oauth2-client": "0.3.*@dev",
@@ -20,13 +19,13 @@ Via Composer
     }
 }
 ```
+Requires PHP 5.4+
 
 ## Usage
 
 ### OAuth2
 
 ```php
-
 $provider = new Younes0\Sniply\OAuth2Provider([
 	'clientId'     => 'XXXXXXXX',
 	'clientSecret' => 'XXXXXXXX',
@@ -56,7 +55,6 @@ if ( ! isset($_GET['code'])) {
 API methods: <http://snip.ly/api/>
 
 ```php
-
 $sniply = new Younes0\Sniply\Client($accessToken);
 
 $sniply->fetch() // Fetch All Snips Created By User
@@ -79,12 +77,16 @@ $sniply->create($link, $message, $optional = [
     ],
 ]);
 
+// fetch all profiles & edit first one
+$profiles = $sniply->fetchProfiles();
+$sniply->editProfile($profiles[0]['id'], $name = 'Younès', $optional = [
+    'website' => 'http://www.github.com/younes0'
+]);
 ```
 
 You can access to Guzzle Response object instead of body by setting `$body` to `false` (usually the last parameter, check the source)
 
 ```php
-
 // outputs guzzle response body as array (parsed json)
 $response = $sniply->create($link, $message); 
 
