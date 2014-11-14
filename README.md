@@ -14,7 +14,6 @@ Via Composer
 ```json
 {
     "require": {
-        "league/oauth2-client": "0.3.*@dev",
         "younes0/sniply": "dev-master"
     }
 }
